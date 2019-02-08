@@ -1,0 +1,15 @@
+node {
+   stage('SCM') {
+       // git clone
+       git 'https://github.com/sebsto/webapp.git'
+   }
+   stage ('build the packages') {
+       // mvn package
+       sh label: '', script: 'mvn package'
+   }
+
+   stage ('archival') {
+       // archiving artifacts
+       archive 'target/*.war' 
+   }
+}
